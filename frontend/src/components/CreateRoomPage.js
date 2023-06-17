@@ -11,8 +11,9 @@ import {
   Radio,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import withNavigateHook from "./withNavigateHook";
 
-export default class CreateRoomPage extends Component {
+export class CreateRoomPage extends Component {
   defaultVotes = 2;
 
   constructor(props) {
@@ -50,7 +51,7 @@ export default class CreateRoomPage extends Component {
     };
     fetch("/api/create-room", requestOptions)
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => this.props.navigation("/room/" + data.code));
   }
 
   render() {
@@ -121,3 +122,5 @@ export default class CreateRoomPage extends Component {
     );
   }
 }
+
+export default withNavigateHook(CreateRoomPage);
