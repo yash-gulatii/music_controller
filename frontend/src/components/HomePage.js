@@ -8,7 +8,6 @@ import {
   Routes,
   Route,
   Link,
-  Redirect,
   useParams,
   Navigate,
 } from "react-router-dom";
@@ -19,6 +18,8 @@ export default class HomePage extends Component {
     this.state = {
       roomCode: null,
     };
+
+    this.clearRoomCode = this.clearRoomCode.bind(this);
   }
 
   async componentDidMount() {
@@ -57,15 +58,27 @@ export default class HomePage extends Component {
     }
   }
 
+  clearRoomCode() {
+    this.setState({
+      roomCode: null,
+    });
+  }
+
   render() {
     const Wrapper = (props) => {
       const params = useParams();
-      return <Room {...{ ...props, match: { params } }} />;
+      return (
+        <Room
+          {...props}
+          leaveRoomCallback={this.clearRoomCode}
+          {...{ ...props, match: { params } }}
+        />
+      );
     };
     return (
       <Router>
         <Routes>
-          <Route exact path="/" element={this.renderHomePage()}></Route>
+          <Route exact path="/" element={this.renderHomePage()} />
           <Route path="/join" Component={RoomJoinPage} />
           <Route path="/create" Component={CreateRoomPage} />
           <Route path="/room/:roomCode" element={<Wrapper />} />
