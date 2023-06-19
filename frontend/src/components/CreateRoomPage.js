@@ -13,7 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import withNavigateHook from "./withNavigateHook";
 import { Collapse } from "@mui/material";
-import Alert from "@mui/lab/Alert";
+import { Alert } from "@mui/material";
 
 export class CreateRoomPage extends Component {
   static defaultProps = {
