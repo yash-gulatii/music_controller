@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import RoomJoinPage from "./RoomJoinPage";
 import CreateRoomPage from "./CreateRoomPage";
 import Room from "./Room";
+import Info from "./Info";
 import { Grid, Button, ButtonGroup, Typography } from "@mui/material";
 import {
   BrowserRouter as Router,
@@ -48,6 +49,14 @@ export default class HomePage extends Component {
               <Button color="secondary" to="/join" component={Link}>
                 Join a Room
               </Button>
+              <Button
+                color="info"
+                to="/info"
+                variant="outlined"
+                component={Link}
+              >
+                Info
+              </Button>
               <Button color="primary" to="/create" component={Link}>
                 Create a Room
               </Button>
@@ -80,6 +89,7 @@ export default class HomePage extends Component {
         <Routes>
           <Route exact path="/" element={this.renderHomePage()} />
           <Route path="/join" Component={RoomJoinPage} />
+          <Route path="/info" Component={Info} />
           <Route path="/create" Component={CreateRoomPage} />
           <Route path="/room/:roomCode" element={<Wrapper />} />
         </Routes>
